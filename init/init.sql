@@ -62,11 +62,13 @@ CREATE TABLE relatorio (
 -- Tabela: visita
 CREATE TABLE visita (
     idAgente INT,
+    idFamilia INT
     idRelatorio INT,
     data DATE,
     hora TIME NOT NULL,
     status VARCHAR(50) NOT NULL,
     PRIMARY KEY (idAgente, idRelatorio),
+    FOREIGN KEU (idFamilia) REFERENCES familia(idFamilia) ON DELETE CASCADE,
     FOREIGN KEY (idAgente) REFERENCES agente(idAgente) ON DELETE CASCADE,
     FOREIGN KEY (idRelatorio) REFERENCES relatorio(idRelatorio) ON DELETE CASCADE
 );
