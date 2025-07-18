@@ -25,7 +25,7 @@ def edita_familia(f : Familia, id : int):
             f.telefone,
             f.renda,
             f.numeroMembros,
-            id_familia
+            id
         ))
         conn.commit()
         
