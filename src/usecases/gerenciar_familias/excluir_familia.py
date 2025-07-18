@@ -1,5 +1,4 @@
 from db.connection import get_cursor_and_connection
-from models.familia.familia import Familia
 
 def deletar_familia_por_id(id : int):
     cursor, conn = get_cursor_and_connection()
@@ -7,6 +6,11 @@ def deletar_familia_por_id(id : int):
     try:
         cursor.execute('DELETE FROM familia WHERE idFamilia = %s', (id,))
         conn.commit()
+        
+    except Exception as e:
+        conn.rollback()
+        print(f"Erro ao editar família: {e}")
+
     finally:
         cursor.close()
         conn.close()

@@ -19,6 +19,11 @@ def criar_familia(f : Familia):
         f.idFamilia = id_familia
 
         return f
+    
+    except Exception as e:
+        conn.rollback()
+        print(f"Erro ao editar família: {e}")
+
     finally:
         cursor.close()
         conn.close()

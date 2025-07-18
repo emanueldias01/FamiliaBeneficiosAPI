@@ -23,7 +23,11 @@ def busca_familia_por_id(id : int):
             numero_membros=row[8]
         )
         return familia
-
+    
+    except Exception as e:
+        conn.rollback()
+        print(f"Erro ao editar família: {e}")
+        
     finally:
         cursor.close()
         conn.close()

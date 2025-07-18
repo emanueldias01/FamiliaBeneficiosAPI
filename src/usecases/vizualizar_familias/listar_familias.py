@@ -24,6 +24,10 @@ def lista_familias_cadastradas():
             familias.append(familia)
 
         return familias
+    
+    except Exception as e:
+        conn.rollback()
+        print(f"Erro ao editar família: {e}")
 
     finally:
         cursor.close()
