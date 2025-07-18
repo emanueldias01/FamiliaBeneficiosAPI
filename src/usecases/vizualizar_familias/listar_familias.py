@@ -27,7 +27,7 @@ def lista_familias_cadastradas():
     
     except Exception as e:
         conn.rollback()
-        print(f"Erro ao editar família: {e}")
+        print(f"Erro ao listar famílias: {e}")
 
     finally:
         cursor.close()

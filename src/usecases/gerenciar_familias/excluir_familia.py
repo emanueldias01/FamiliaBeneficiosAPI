@@ -6,10 +6,10 @@ def deletar_familia_por_id(id : int):
     try:
         cursor.execute('DELETE FROM familia WHERE idFamilia = %s', (id,))
         conn.commit()
-        
+
     except Exception as e:
         conn.rollback()
-        print(f"Erro ao editar família: {e}")
+        print(f"Erro ao excluir família: {e}")
 
     finally:
         cursor.close()

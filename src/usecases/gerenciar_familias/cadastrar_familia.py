@@ -22,7 +22,7 @@ def criar_familia(f : Familia):
     
     except Exception as e:
         conn.rollback()
-        print(f"Erro ao editar família: {e}")
+        print(f"Erro ao cadastrar família: {e}")
 
     finally:
         cursor.close()
