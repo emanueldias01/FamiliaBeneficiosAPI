@@ -23,10 +23,12 @@ CREATE TABLE familia (
 
 -- Tabela: tem (relação entre família e benefício)
 CREATE TABLE tem (
-    idFamilia INT REFERENCES familia(idFamilia),
-    idBeneficio INT REFERENCES beneficio(idBeneficio),
+    idFamilia INT,
+    idBeneficio INT,
     dataInicio DATE,
-    PRIMARY KEY (idFamilia, idBeneficio)
+    PRIMARY KEY (idFamilia, idBeneficio),
+    FOREIGN KEY (idFamilia) REFERENCES familia(idFamilia) ON DELETE CASCADE,
+    FOREIGN KEY (idBeneficio) REFERENCES beneficio(idBeneficio) ON DELETE CASCADE
 );
 
 -- Tabela: pessoa
@@ -36,20 +38,23 @@ CREATE TABLE pessoa (
     idade INT,
     dataNascimento DATE,
     genero CHAR(1),
-    idFamilia INT REFERENCES familia(idFamilia)
+    idFamilia INT,
+    FOREIGN KEY (idFamilia) REFERENCES familia(idFamilia) ON DELETE CASCADE
 );
 
 -- Tabela: menorIdade
 CREATE TABLE menorIdade (
-    NIS BIGINT PRIMARY KEY REFERENCES pessoa(NIS),
-    anoEscolar VARCHAR(20)
+    NIS BIGINT PRIMARY KEY,
+    anoEscolar VARCHAR(20),
+    FOREIGN KEY (NIS) REFERENCES pessoa(NIS) ON DELETE CASCADE
 );
 
 -- Tabela: maiorIdade
 CREATE TABLE maiorIdade (
-    NIS BIGINT PRIMARY KEY REFERENCES pessoa(NIS),
+    NIS BIGINT PRIMARY KEY,
     renda NUMERIC(10, 2),
-    ocupacao VARCHAR(100)
+    ocupacao VARCHAR(100),
+    FOREIGN KEY (NIS) REFERENCES pessoa(NIS) ON DELETE CASCADE
 );
 
 -- Tabela: agente
@@ -68,28 +73,33 @@ CREATE TABLE relatorio (
 
 -- Tabela: visita
 CREATE TABLE visita (
-    idAgente INT REFERENCES agente(idAgente),
-    idRelatorio INT REFERENCES relatorio(idRelatorio),
+    idAgente INT,
+    idRelatorio INT,
     data DATE,
     hora TIME,
     status VARCHAR(50),
-    PRIMARY KEY (idAgente, idRelatorio)
+    PRIMARY KEY (idAgente, idRelatorio),
+    FOREIGN KEY (idAgente) REFERENCES agente(idAgente) ON DELETE CASCADE,
+    FOREIGN KEY (idRelatorio) REFERENCES relatorio(idRelatorio) ON DELETE CASCADE
 );
 
 -- Tabela: relatorio_observacoes
 CREATE TABLE relatorio_observacoes (
     observacoes TEXT,
-    idRelatorio INT PRIMARY KEY REFERENCES relatorio(idRelatorio)
+    idRelatorio INT PRIMARY KEY,
+    FOREIGN KEY (idRelatorio) REFERENCES relatorio(idRelatorio) ON DELETE CASCADE
 );
 
 -- Tabela: relatorio_vacinacaoFamilia
 CREATE TABLE relatorio_vacinacaoFamilia (
     vacinacaoFamilia TEXT,
-    idRelatorio INT PRIMARY KEY REFERENCES relatorio(idRelatorio)
+    idRelatorio INT PRIMARY KEY,
+    FOREIGN KEY (idRelatorio) REFERENCES relatorio(idRelatorio) ON DELETE CASCADE
 );
 
 -- Tabela: relatorio_pesoFamilia
 CREATE TABLE relatorio_pesoFamilia (
     pesoFamilia TEXT,
-    idRelatorio INT PRIMARY KEY REFERENCES relatorio(idRelatorio)
+    idRelatorio INT PRIMARY KEY,
+    FOREIGN KEY (idRelatorio) REFERENCES relatorio(idRelatorio) ON DELETE CASCADE
 );
