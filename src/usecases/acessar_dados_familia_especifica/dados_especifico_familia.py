@@ -25,7 +25,6 @@ def busca_familia_por_id(id : int):
         return familia
     
     except Exception as e:
-        conn.rollback()
         print(f"Erro ao buscar família: {e}")
 
     finally:

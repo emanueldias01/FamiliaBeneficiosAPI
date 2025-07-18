@@ -26,8 +26,8 @@ def lista_familias_cadastradas():
         return familias
     
     except Exception as e:
-        conn.rollback()
         print(f"Erro ao listar famílias: {e}")
+        return []
 
     finally:
         cursor.close()

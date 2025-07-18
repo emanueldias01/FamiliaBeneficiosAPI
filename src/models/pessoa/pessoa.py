@@ -15,3 +15,6 @@ class Pessoa(BaseModel):
     dataNascimento : date
     genero : GeneroEnum
     idFamilia : int
+    anoEscolar : str
+    renda : float
+    ocupacao : str
