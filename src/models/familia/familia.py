@@ -4,6 +4,7 @@ class Familia(BaseModel):
     id_familia : int
     nome : str
     rua : str
+    numero : str
     bairro : str
     cidade : str
     telefone : str

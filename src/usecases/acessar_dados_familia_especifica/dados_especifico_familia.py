@@ -12,7 +12,7 @@ def busca_familia_por_id(id : int):
             return None
 
         familia = Familia(
-            idFamilia=row[0],
+            id_familia=row[0],
             nome=row[1],
             rua=row[2],
             numero=row[3],
@@ -20,7 +20,7 @@ def busca_familia_por_id(id : int):
             cidade=row[5],
             telefone=row[6],
             renda=row[7],
-            numeroMembros=row[8]
+            numero_membros=row[8]
         )
         return familia
 
