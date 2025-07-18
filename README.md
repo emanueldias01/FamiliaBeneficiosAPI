@@ -11,6 +11,9 @@ git clone
 # Acesse o diretório do projeto
 cd FamiliaBeneficiosAPI
 
+##Inicialize o banco de dados via docker
+docker compose up -d
+
 # Crie o ambiente virtual
 python -m venv venv
 
