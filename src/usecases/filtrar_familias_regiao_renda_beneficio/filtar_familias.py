@@ -15,15 +15,15 @@ def filtar_familias_beneficios(filtro : FiltroFamilia):
         cursor.execute('''
             SELECT f.*
             FROM familia f
-            JOIN tem t ON f.idFamilia = t.idFamilia
-            WHERE f.bairro = %s AND f.renda = %s AND t.idBeneficio = %s
+            JOIN tem t ON f.idfamilia = t.idfamilia
+            WHERE f.bairro = %s AND f.renda = %s AND t.idbeneficio = %s
         ''', (filtro.bairro, filtro.renda, filtro.beneficioId))
 
         result = cursor.fetchall()
 
         for row in result:
             familia = {
-                "idFamilia": row[0],
+                "idfamilia": row[0],
                 "nome": row[1],
                 "rua": row[2],
                 "numero": row[3],

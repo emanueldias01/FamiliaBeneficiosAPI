@@ -6,12 +6,12 @@ def listar_beneficios():
     beneficios = []
 
     try:
-        cursor.execute('SELECT idBeneficio, nome, descricao, criterios, tipo, valor FROM beneficio')
+        cursor.execute('SELECT idbeneficio, nome, descricao, criterios, tipo, valor FROM beneficio')
         rows = cursor.fetchall()
 
         for row in rows:
             b = Beneficio(
-                idBeneficio=row[0],
+                idbeneficio=row[0],
                 nome=row[1],
                 descricao=row[2],
                 criterios=row[3],

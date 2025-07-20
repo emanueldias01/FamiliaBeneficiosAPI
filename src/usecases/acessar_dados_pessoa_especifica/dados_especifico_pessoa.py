@@ -17,7 +17,7 @@ def buscar_pessoa_por_nis(nis : int):
             idade=row[2],
             dataNascimento=row[3],
             genero=row[4],
-            idFamilia=[5],
+            idfamilia=[5],
             anoEscolar=row[6],
             renda=row[7],
             ocupacao=row[8]

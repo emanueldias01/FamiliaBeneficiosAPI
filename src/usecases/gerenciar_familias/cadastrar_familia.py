@@ -10,13 +10,14 @@ def criar_familia(f : Familia):
                        (nome, rua, numero, bairro, cidade, telefone, renda, numeroMembros)
                        VALUES
                        (%s, %s, %s, %s, %s, %s, %s, %s)
+                       RETURNING idfamilia
                        """,
         (f.nome, f.rua, f.numero, f.bairro, f.cidade, f.telefone, f.renda, f.numero_membros))
 
         id_familia = cursor.fetchone()[0]
         conn.commit()
 
-        f.idFamilia = id_familia
+        f.id_familia = id_familia
 
         return f
     

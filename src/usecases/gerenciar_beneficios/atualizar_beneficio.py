@@ -12,7 +12,7 @@ def editar_beneficio(beneficio: Beneficio, idB: int):
                 criterios = %s,
                 tipo = %s,
                 valor = %s
-            WHERE idBeneficio = %s
+            WHERE idbeneficio = %s
         ''', (
             beneficio.nome,
             beneficio.descricao,

@@ -12,7 +12,7 @@ def buscar_historico_relatorios_familiar(id: int):
             SELECT v.idRelatorio, v.data, v.hora, v.status, a.nome as agente
             FROM visita v
             INNER JOIN agente a ON v.idAgente = a.idAgente
-            WHERE v.idFamilia = %s
+            WHERE v.idfamilia = %s
             ORDER BY v.data DESC, v.hora DESC
         ''', (id,))
 

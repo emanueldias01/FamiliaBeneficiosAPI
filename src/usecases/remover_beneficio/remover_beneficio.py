@@ -4,7 +4,7 @@ def remover_beneficio_da_familia(idB : int, idF : int):
     cursor, conn = get_cursor_and_connection()
 
     try:
-        cursor.execute('DELETE FROM tem WHERE idFamilia = %s AND idBeneficio = %s', (idF, idB))
+        cursor.execute('DELETE FROM tem WHERE idfamilia = %s AND idbeneficio = %s', (idF, idB))
         conn.commit()
     except Exception as e:
         conn.rollback()

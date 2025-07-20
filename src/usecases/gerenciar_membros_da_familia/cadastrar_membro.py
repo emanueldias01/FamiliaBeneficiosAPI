@@ -7,7 +7,7 @@ def cria_pessoa_membro_familia(p : Pessoa, idF : int):
     try:
         # 1. Inserir a nova pessoa
         cursor.execute('''
-            INSERT INTO pessoa (NIS, nome, idade, dataNascimento, genero, idFamilia, anoEscolar, renda, ocupacao)
+            INSERT INTO pessoa (NIS, nome, idade, dataNascimento, genero, idfamilia, anoEscolar, renda, ocupacao)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         ''', (
             p.nis,
@@ -25,7 +25,7 @@ def cria_pessoa_membro_familia(p : Pessoa, idF : int):
         cursor.execute('''
             UPDATE familia
             SET numeroMembros = COALESCE(numeroMembros, 0) + 1
-            WHERE idFamilia = %s
+            WHERE idfamilia = %s
         ''', (idF,))
 
         # 3. Atualizar a renda da família, somando com a renda da nova pessoa (se fornecida)
@@ -33,7 +33,7 @@ def cria_pessoa_membro_familia(p : Pessoa, idF : int):
             cursor.execute('''
                 UPDATE familia
                 SET renda = renda + %s
-                WHERE idFamilia = %s
+                WHERE idfamilia = %s
             ''', (p.renda, idF))
 
         conn.commit()

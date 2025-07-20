@@ -4,7 +4,7 @@ def deletar_familia_por_id(id : int):
     cursor, conn = get_cursor_and_connection()
     
     try:
-        cursor.execute('DELETE FROM familia WHERE idFamilia = %s', (id,))
+        cursor.execute('DELETE FROM familia WHERE idfamilia = %s', (id,))
         conn.commit()
 
     except Exception as e:

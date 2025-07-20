@@ -5,7 +5,7 @@ def busca_beneficio_por_id(id : int):
     cursor, conn = get_cursor_and_connection()
 
     try:
-        cursor.execute('SELECT * FROM beneficio WHERE idBeneficio = %s', (id,))
+        cursor.execute('SELECT * FROM beneficio WHERE idbeneficio = %s', (id,))
         row = cursor.fetchall()
 
         if row is None:

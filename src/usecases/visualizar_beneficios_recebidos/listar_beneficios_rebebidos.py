@@ -6,10 +6,10 @@ def vizualizar_beneficios_recebidos_por_familia_id(id: int):
 
     try:
         cursor.execute("""
-            SELECT b.idBeneficio, b.nome, b.descricao, b.criterios, b.tipo, b.valor, t.dataInicio
+            SELECT b.idbeneficio, b.nome, b.descricao, b.criterios, b.tipo, b.valor, t.dataInicio
             FROM tem t
-            INNER JOIN beneficio b ON t.idBeneficio = b.idBeneficio
-            WHERE t.idFamilia = %s
+            INNER JOIN beneficio b ON t.idbeneficio = b.idbeneficio
+            WHERE t.idfamilia = %s
         """, (id,))
 
         rows = cursor.fetchall()

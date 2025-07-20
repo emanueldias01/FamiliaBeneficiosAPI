@@ -4,7 +4,7 @@ def deletar_beneficio_por_id(id : int):
     cursor, conn = get_cursor_and_connection()
     
     try:
-        cursor.execute('DELETE FROM beneficio WHERE idBeneficio = %s', (id,))
+        cursor.execute('DELETE FROM beneficio WHERE idbeneficio = %s', (id,))
         conn.commit()
     except Exception as e:
         conn.rollback()

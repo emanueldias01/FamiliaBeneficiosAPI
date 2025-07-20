@@ -5,7 +5,7 @@ def busca_familia_por_id(id : int):
     cursor, conn = get_cursor_and_connection()
     
     try:
-        cursor.execute("SELECT * FROM familia WHERE idFamilia = %s", (id,))
+        cursor.execute("SELECT * FROM familia WHERE idfamilia = %s", (id,))
         row = cursor.fetchone()
 
         if row is None:

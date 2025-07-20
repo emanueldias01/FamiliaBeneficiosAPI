@@ -1,6 +1,6 @@
 -- Tabela: beneficio
 CREATE TABLE beneficio (
-    idBeneficio SERIAL PRIMARY KEY,
+    idbeneficio SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     descricao TEXT NOT NULL,
     criterios TEXT NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE beneficio (
 
 -- Tabela: familia
 CREATE TABLE familia (
-    idFamilia SERIAL PRIMARY KEY,
+    idfamilia SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     rua VARCHAR(100),
     numero VARCHAR(10),
@@ -23,12 +23,12 @@ CREATE TABLE familia (
 
 -- Tabela: tem (relação entre família e benefício)
 CREATE TABLE tem (
-    idFamilia INT,
-    idBeneficio INT,
+    idfamilia INT,
+    idbeneficio INT,
     dataInicio DATE,
-    PRIMARY KEY (idFamilia, idBeneficio),
-    FOREIGN KEY (idFamilia) REFERENCES familia(idFamilia) ON DELETE CASCADE,
-    FOREIGN KEY (idBeneficio) REFERENCES beneficio(idBeneficio) ON DELETE CASCADE
+    PRIMARY KEY (idfamilia, idbeneficio),
+    FOREIGN KEY (idfamilia) REFERENCES familia(idfamilia) ON DELETE CASCADE,
+    FOREIGN KEY (idbeneficio) REFERENCES beneficio(idbeneficio) ON DELETE CASCADE
 );
 
 -- Tabela: pessoa
@@ -38,11 +38,11 @@ CREATE TABLE pessoa (
     idade INT NOT NULL,
     dataNascimento DATE NOT NULL,
     genero CHAR(1),
-    idFamilia INT,
+    idfamilia INT,
     anoEscolar VARCHAR(20),
     renda NUMERIC(10,2) NOT NULL CHECK (renda >= 0),
     ocupacao VARCHAR(100)
-    FOREIGN KEY (idFamilia) REFERENCES familia(idFamilia) ON DELETE CASCADE
+    FOREIGN KEY (idfamilia) REFERENCES familia(idfamilia) ON DELETE CASCADE
 );
 
 -- Tabela: agente
@@ -62,13 +62,13 @@ CREATE TABLE relatorio (
 -- Tabela: visita
 CREATE TABLE visita (
     idAgente INT,
-    idFamilia INT
+    idfamilia INT
     idRelatorio INT,
     data DATE,
     hora TIME NOT NULL,
     status VARCHAR(50) NOT NULL,
     PRIMARY KEY (idAgente, idRelatorio),
-    FOREIGN KEU (idFamilia) REFERENCES familia(idFamilia) ON DELETE CASCADE,
+    FOREIGN KEU (idfamilia) REFERENCES familia(idfamilia) ON DELETE CASCADE,
     FOREIGN KEY (idAgente) REFERENCES agente(idAgente) ON DELETE CASCADE,
     FOREIGN KEY (idRelatorio) REFERENCES relatorio(idRelatorio) ON DELETE CASCADE
 );

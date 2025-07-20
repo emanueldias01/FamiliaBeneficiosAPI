@@ -5,7 +5,7 @@ def deletar_pessoa_por_nis(nis : str):
 
     try:
         # 1. Buscar a renda e o id da família da pessoa
-        cursor.execute('SELECT renda, idFamilia FROM pessoa WHERE nis = %s', (nis,))
+        cursor.execute('SELECT renda, idfamilia FROM pessoa WHERE nis = %s', (nis,))
         result = cursor.fetchone()
         
         if not result:
@@ -19,14 +19,14 @@ def deletar_pessoa_por_nis(nis : str):
             cursor.execute('''
                 UPDATE familia
                 SET renda = renda - %s
-                WHERE idFamilia = %s
+                WHERE idfamilia = %s
             ''', (renda_pessoa, id_familia))
 
         # 3. Reduzir o número de membros da família
         cursor.execute('''
             UPDATE familia
             SET numeroMembros = GREATEST(COALESCE(numeroMembros, 1) - 1, 0)
-            WHERE idFamilia = %s
+            WHERE idfamilia = %s
         ''', (id_familia,))
 
         # 4. Excluir a pessoa

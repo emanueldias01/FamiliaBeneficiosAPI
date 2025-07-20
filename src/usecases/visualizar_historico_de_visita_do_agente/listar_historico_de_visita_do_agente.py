@@ -8,7 +8,7 @@ def listar_historico_visitas_agente(id_agente: int) -> list[Visita]:
 
     try:
         cursor.execute('''
-            SELECT idAgente, idFamilia, data, hora, status
+            SELECT idAgente, idfamilia, data, hora, status
             FROM visita
             WHERE idAgente = %s
             ORDER BY data DESC, hora DESC

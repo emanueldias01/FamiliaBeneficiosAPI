@@ -6,7 +6,7 @@ def edita_pessoa(p : Pessoa, idP : int):
 
     try:
         # 1. Buscar a renda e id da família anterior da pessoa
-        cursor.execute('SELECT renda, idFamilia FROM pessoa WHERE NIS = %s', (idP,))
+        cursor.execute('SELECT renda, idfamilia FROM pessoa WHERE NIS = %s', (idP,))
         result = cursor.fetchone()
         if not result:
             print("Pessoa não encontrada.")
@@ -42,19 +42,19 @@ def edita_pessoa(p : Pessoa, idP : int):
             cursor.execute('''
                 UPDATE familia
                 SET renda = renda + %s
-                WHERE idFamilia = %s
+                WHERE idfamilia = %s
             ''', (diferenca_renda, id_familia))
         elif p.renda is not None and renda_antiga is None:
             cursor.execute('''
                 UPDATE familia
                 SET renda = renda + %s
-                WHERE idFamilia = %s
+                WHERE idfamilia = %s
             ''', (p.renda, id_familia))
         elif p.renda is None and renda_antiga is not None:
             cursor.execute('''
                 UPDATE familia
                 SET renda = renda - %s
-                WHERE idFamilia = %s
+                WHERE idfamilia = %s
             ''', (renda_antiga, id_familia))
 
         conn.commit()

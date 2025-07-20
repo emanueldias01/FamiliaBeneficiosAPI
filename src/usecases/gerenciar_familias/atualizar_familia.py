@@ -14,8 +14,8 @@ def edita_familia(f : Familia, id : int):
                 cidade = %s,
                 telefone = %s,
                 renda = %s,
-                numeroMembros = %s
-            WHERE idFamilia = %s
+                numeromembros = %s
+            WHERE idfamilia = %s
         ''', (
             f.nome,
             f.rua,
@@ -24,7 +24,7 @@ def edita_familia(f : Familia, id : int):
             f.cidade,
             f.telefone,
             f.renda,
-            f.numeroMembros,
+            f.numero_membros,
             id
         ))
         conn.commit()
