@@ -1,5 +1,5 @@
 from db.connection import get_cursor_and_connection
-from models.visita import Visita
+from models.visita.visita import Visita
 from datetime import datetime
 
 def listar_historico_visitas_agente(id_agente: int) -> list[Visita]:

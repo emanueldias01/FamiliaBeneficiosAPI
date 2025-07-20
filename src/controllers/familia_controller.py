@@ -5,6 +5,9 @@ from usecases.visualizar_familias.listar_familias import lista_familias_cadastra
 from usecases.gerenciar_familias.atualizar_familia import edita_familia
 from usecases.gerenciar_familias.excluir_familia import deletar_familia_por_id
 from usecases.acessar_dados_familia_especifica.dados_especifico_familia import busca_familia_por_id
+from usecases.filtrar_familias_regiao_renda_beneficio.filtar_familias import filtar_familias_beneficios
+from usecases.visualizar_beneficios_recebidos.listar_beneficios_rebebidos import vizualizar_beneficios_recebidos_por_familia_id
+from usecases.visualizar_membros_da_familia.listar_membros_da_familia import listar_membros_familia
 
 router = APIRouter()
 
@@ -32,3 +35,23 @@ def familia(id : int, f : Familia):
 def familia(id : int):
     deletar_familia_por_id(id)
     return {"message": "Família deletada com sucesso"} 
+
+@router.post("/filtrar")
+def filtrar_familias(bairro: str, renda: float, idBeneficio: int):
+    filtro = {
+        "bairro": bairro,
+        "renda": renda,
+        "beneficioId": idBeneficio
+    }
+    familias = filtar_familias_beneficios(filtro)
+    return {"familias": familias}
+    
+@router.get("/beneficios/{idFamilia}")
+def beneficios_recebidos(idFamilia: int):
+    beneficios = vizualizar_beneficios_recebidos_por_familia_id(idFamilia)
+    return {"beneficios": beneficios}
+
+@router.get("/membros/{idFamilia}")
+def membros_familia(idFamilia: int):
+    membros = listar_membros_familia(idFamilia)
+    return {"membros": membros}

@@ -1,5 +1,8 @@
 from db.connection import get_cursor_and_connection
-from models.relatorio import Relatorio, RelatorioObservacoes, RelatorioPesoFamilia, RelatorioVacinacaoFamilia
+from models.relatorio.relatorio import Relatorio
+from models.relatorio.relatorio_observacoes.relatorio_observacoes import RelatorioObservacoes
+from models.relatorio.relatorio_peso_familia.relatorio_peso_familia import RelatorioPesoFamilia
+from models.relatorio.relatorio_vacinacao_familia.relatorio_vacinacao_familia import RelatorioVacinacaoFamilia
 
 def listar_historico_relatorios_por_agente(id: int):
     cursor, conn = get_cursor_and_connection()
