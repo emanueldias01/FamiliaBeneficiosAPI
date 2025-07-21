@@ -8,6 +8,9 @@ from usecases.acessar_dados_familia_especifica.dados_especifico_familia import b
 from usecases.filtrar_familias_regiao_renda_beneficio.filtar_familias import filtar_familias_beneficios
 from usecases.visualizar_beneficios_recebidos.listar_beneficios_rebebidos import vizualizar_beneficios_recebidos_por_familia_id
 from usecases.visualizar_membros_da_familia.listar_membros_da_familia import listar_membros_familia
+from usecases.gerenciar_membros_da_familia.cadastrar_membro import cria_pessoa_membro_familia
+from models.pessoa.pessoa import Pessoa
+from usecases.filtrar_familias_regiao_renda_beneficio.filtar_familias import FiltroFamilia
 
 router = APIRouter()
 
@@ -37,12 +40,7 @@ def familia(id : int):
     return {"message": "Família deletada com sucesso"} 
 
 @router.get("/filtrar")
-def filtrar_familias(bairro: str, renda: float, idBeneficio: int):
-    filtro = {
-        "bairro": bairro,
-        "renda": renda,
-        "beneficioId": idBeneficio
-    }
+def filtrar_familias(filtro : FiltroFamilia):
     familias = filtar_familias_beneficios(filtro)
     return {"familias": familias}
     
@@ -55,3 +53,8 @@ def beneficios_recebidos(id: int):
 def membros_familia(id: int):
     membros = listar_membros_familia(id)
     return {"membros": membros}
+
+@router.post("/cadastrarMembro/{idFamilia}")
+def cadastrar_membro_familia(idFamilia : int, p : Pessoa):
+    cria_pessoa_membro_familia(p, idFamilia)
+    return {"message" : "pessoa cadastrada com sucesso!"}

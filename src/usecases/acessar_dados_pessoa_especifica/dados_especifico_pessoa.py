@@ -1,7 +1,7 @@
 from db.connection import get_cursor_and_connection
 from models.pessoa.pessoa import Pessoa
 
-def buscar_pessoa_por_nis(nis : int):
+def buscar_pessoa_por_nis(nis : str):
     cursor, conn = get_cursor_and_connection()
 
     try:
