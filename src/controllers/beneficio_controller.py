@@ -11,7 +11,7 @@ from usecases.remover_beneficio.remover_beneficio import remover_beneficio_da_fa
 
 router = APIRouter()
 
-router.get("/")
+@router.get("/")
 def listar_beneficios():
     beneficios = listar_beneficios()
     return {"beneficios": beneficios}

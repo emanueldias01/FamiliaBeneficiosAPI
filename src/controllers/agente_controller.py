@@ -19,8 +19,8 @@ def listar_agentes_route():
     return {"agentes": agentes}
 
 @router.get("/buscar-pessoa/{nis}")
-def buscar_agente_route(id: int):
-    pessoa = buscar_pessoa_por_nis(id)
+def buscar_pessoa_route(nis: int):
+    pessoa = buscar_pessoa_por_nis(nis)
     return pessoa
 
 @router.post("/")

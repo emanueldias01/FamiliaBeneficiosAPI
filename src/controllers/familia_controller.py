@@ -36,7 +36,7 @@ def familia(id : int):
     deletar_familia_por_id(id)
     return {"message": "Família deletada com sucesso"} 
 
-@router.post("/filtrar")
+@router.get("/filtrar")
 def filtrar_familias(bairro: str, renda: float, idBeneficio: int):
     filtro = {
         "bairro": bairro,
@@ -46,12 +46,12 @@ def filtrar_familias(bairro: str, renda: float, idBeneficio: int):
     familias = filtar_familias_beneficios(filtro)
     return {"familias": familias}
     
-@router.get("/beneficios/{idFamilia}")
-def beneficios_recebidos(idFamilia: int):
-    beneficios = vizualizar_beneficios_recebidos_por_familia_id(idFamilia)
+@router.get("/beneficios/{id}")
+def beneficios_recebidos(id: int):
+    beneficios = vizualizar_beneficios_recebidos_por_familia_id(id)
     return {"beneficios": beneficios}
 
-@router.get("/membros/{idFamilia}")
-def membros_familia(idFamilia: int):
-    membros = listar_membros_familia(idFamilia)
+@router.get("/membros/{id}")
+def membros_familia(id: int):
+    membros = listar_membros_familia(id)
     return {"membros": membros}
