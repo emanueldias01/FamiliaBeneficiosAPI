@@ -8,7 +8,7 @@ def conceder_beneficio_a_familia  (idB : int, idF : int):
             INSERT INTO tem(idfamilia, idbeneficio, dataInicio)
             values(%s, %s, %s)
         """,
-        (idB, idF, date.today()))
+        (idF, idB, date.today()))
 
         conn.commit()
 

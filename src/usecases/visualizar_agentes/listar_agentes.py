@@ -6,12 +6,12 @@ def listar_agente():
     agentes = []
 
     try:
-        cursor.execute('SELECT idAgente, nome, contato, login, senha FROM agente')
+        cursor.execute('SELECT idagente, nome, contato, login, senha FROM agente')
         rows = cursor.fetchall()
 
         for row in rows:
             agente = AgenteVisita(
-                idAgente=row[0],
+                id_agente=row[0],
                 nome=row[1],
                 contato=row[2],
                 login=row[3],

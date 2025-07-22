@@ -12,7 +12,7 @@ from usecases.remover_beneficio.remover_beneficio import remover_beneficio_da_fa
 router = APIRouter()
 
 @router.get("/")
-def listar_beneficios():
+def listar_todos_beneficios():
     beneficios = listar_beneficios()
     return {"beneficios": beneficios}
 
@@ -24,7 +24,7 @@ def obter_beneficio(id: int):
 @router.post("/")
 def cadastrar_beneficio(b: Beneficio):
     criar_beneficio(b)
-    return {"message": "Benefício cadastrado com sucesso", "beneficio": b}
+    return {"message": "Benefício cadastrado com sucesso"}
 
 @router.put("/{id}")
 def atualizar_beneficio(id: int, b: Beneficio):

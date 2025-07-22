@@ -10,15 +10,15 @@ def listar_historico_relatorios_por_agente(id: int):
 
     try:
         cursor.execute("""
-            SELECT v.idRelatorio, v.data, v.hora, v.status,
+            SELECT v.idrelatorio, v.data, v.hora, v.status,
                    ro.observacoes,
                    rp.pesoFamilia,
                    rv.vacinacaoFamilia
             FROM visita v
-            LEFT JOIN relatorio_observacoes ro ON v.idRelatorio = ro.idRelatorio
-            LEFT JOIN relatorio_pesoFamilia rp ON v.idRelatorio = rp.idRelatorio
-            LEFT JOIN relatorio_vacinacaoFamilia rv ON v.idRelatorio = rv.idRelatorio
-            WHERE v.idAgente = %s
+            LEFT JOIN relatorio_observacoes ro ON v.idrelatorio = ro.idrelatorio
+            LEFT JOIN relatorio_pesoFamilia rp ON v.idrelatorio = rp.idrelatorio
+            LEFT JOIN relatorio_vacinacaoFamilia rv ON v.idrelatorio = rv.idrelatorio
+            WHERE v.idagente = %s
             ORDER BY v.data DESC, v.hora DESC
         """, (id,))
 

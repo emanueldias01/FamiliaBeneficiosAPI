@@ -3,21 +3,22 @@ from models.pessoa.pessoa import Pessoa
 
 def buscar_pessoa_por_nis(nis : str):
     cursor, conn = get_cursor_and_connection()
-
     try:
-        cursor.execute('SELECT * FROM pessoa WHERE nis = %s'(nis,))
+        cursor.execute('SELECT nis, nome, idade, datanascimento, genero, idfamilia, anoescolar, renda, ocupacao FROM pessoa WHERE nis = %s',(nis,))
         row = cursor.fetchall()
 
         if row is None:
             return None
-        
+        else:
+            row = row[0] 
+        print(row)
         pessoa = Pessoa(
             nis=row[0],
             nome=row[1],
             idade=row[2],
             dataNascimento=row[3],
             genero=row[4],
-            idfamilia=[5],
+            idfamilia=row[5],
             anoEscolar=row[6],
             renda=row[7],
             ocupacao=row[8]

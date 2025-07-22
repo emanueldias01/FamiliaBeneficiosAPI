@@ -4,7 +4,7 @@ def deletar_agente_por_id(id : int):
     cursor, conn = get_cursor_and_connection()
 
     try:
-        cursor.execute('DELETE FROM agente WHERE idAgente = %s', (id,))
+        cursor.execute('DELETE FROM agente WHERE idagente = %s', (id,))
         conn.commit()
     
     except Exception as e:

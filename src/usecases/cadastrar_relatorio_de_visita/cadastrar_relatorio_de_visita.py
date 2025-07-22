@@ -14,25 +14,25 @@ def cadastrar_relatorio(tipo : TipoRelatorio):
 
     try:
         # 1. Cria registro em relatorio e pega o id
-        cursor.execute('INSERT INTO relatorio DEFAULT VALUES RETURNING idRelatorio')
+        cursor.execute('INSERT INTO relatorio DEFAULT VALUES RETURNING idrelatorio')
         id_relatorio = cursor.fetchone()[0]
 
         # 2. Insere na tabela correspondente
         if tipo.tipo_relatorio == 'relatorio_observacoes':
             cursor.execute(
-                'INSERT INTO relatorio_observacoes (observacoes, idRelatorio) VALUES (%s, %s)',
+                'INSERT INTO relatorio_observacoes (observacoes, idrelatorio) VALUES (%s, %s)',
                 (tipo.dados, id_relatorio)
             )
 
         elif tipo.tipo_relatorio == 'relatorio_vacinacaoFamilia':
             cursor.execute(
-                'INSERT INTO relatorio_vacinacaoFamilia (vacinacaoFamilia, idRelatorio) VALUES (%s, %s)',
+                'INSERT INTO relatorio_vacinacaoFamilia (vacinacaoFamilia, idrelatorio) VALUES (%s, %s)',
                 (tipo.dados, id_relatorio)
             )
 
         elif tipo.tipo_relatorio == 'relatorio_pesoFamilia':
             cursor.execute(
-                'INSERT INTO relatorio_pesoFamilia (pesoFamilia, idRelatorio) VALUES (%s, %s)',
+                'INSERT INTO relatorio_pesoFamilia (pesoFamilia, idrelatorio) VALUES (%s, %s)',
                 (tipo.dados, id_relatorio)
             )
 

@@ -7,12 +7,12 @@ def cadastrar_visita(v: Visita):
     try:
         cursor.execute('''
             INSERT INTO visita (
-                idAgente, idfamilia, idRelatorio, data, hora, status
+                idagente, idfamilia, idrelatorio, data, hora, status
             ) VALUES (%s, %s, %s, %s, %s, %s)
         ''', (
-            v.idAgente,
-            v.idfamilia,
-            v.idRelatorio,
+            v.id_agente,
+            v.id_familia,
+            v.id_relatorio,
             v.data,
             v.hora,
             v.status

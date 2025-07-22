@@ -9,9 +9,9 @@ def buscar_historico_relatorios_familiar(id: int):
     try:
         # Busca todos os relatórios associados a visitas da família
         cursor.execute('''
-            SELECT v.idRelatorio, v.data, v.hora, v.status, a.nome as agente
+            SELECT v.idrelatorio, v.data, v.hora, v.status, a.nome as agente
             FROM visita v
-            INNER JOIN agente a ON v.idAgente = a.idAgente
+            INNER JOIN agente a ON v.idagente = a.idagente
             WHERE v.idfamilia = %s
             ORDER BY v.data DESC, v.hora DESC
         ''', (id,))
@@ -32,7 +32,7 @@ def buscar_historico_relatorios_familiar(id: int):
             }
 
             # Verifica em qual tabela especializada o relatório está
-            cursor.execute('SELECT observacoes FROM relatorio_observacoes WHERE idRelatorio = %s', (id_relatorio,))
+            cursor.execute('SELECT observacoes FROM relatorio_observacoes WHERE idrelatorio = %s', (id_relatorio,))
             row = cursor.fetchone()
             if row:
                 relatorio_info["tipo"] = "observacoes"
@@ -40,7 +40,7 @@ def buscar_historico_relatorios_familiar(id: int):
                 historico.append(relatorio_info)
                 continue
 
-            cursor.execute('SELECT vacinacaoFamilia FROM relatorio_vacinacaoFamilia WHERE idRelatorio = %s', (id_relatorio,))
+            cursor.execute('SELECT vacinacaoFamilia FROM relatorio_vacinacaoFamilia WHERE idrelatorio = %s', (id_relatorio,))
             row = cursor.fetchone()
             if row:
                 relatorio_info["tipo"] = "vacinacao_familia"
@@ -48,7 +48,7 @@ def buscar_historico_relatorios_familiar(id: int):
                 historico.append(relatorio_info)
                 continue
 
-            cursor.execute('SELECT pesoFamilia FROM relatorio_pesoFamilia WHERE idRelatorio = %s', (id_relatorio,))
+            cursor.execute('SELECT pesoFamilia FROM relatorio_pesoFamilia WHERE idrelatorio = %s', (id_relatorio,))
             row = cursor.fetchone()
             if row:
                 relatorio_info["tipo"] = "peso_familia"

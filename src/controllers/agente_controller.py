@@ -25,8 +25,8 @@ def buscar_pessoa_route(nis: str):
 
 @router.post("/")
 def cadastrar_agente_route(agente: AgenteVisita):
-    novo_agente = criar_agente(agente)
-    return {"message": "Agente cadastrado com sucesso", "agente": novo_agente}
+    criar_agente(agente)
+    return {"message": "Agente cadastrado com sucesso"}
 
 @router.put("/{id}")
 def atualizar_agente_route(id: int, agente: AgenteVisita):

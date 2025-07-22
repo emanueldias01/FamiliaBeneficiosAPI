@@ -11,7 +11,7 @@ def listar_beneficios():
 
         for row in rows:
             b = Beneficio(
-                idbeneficio=row[0],
+                id_beneficio=row[0],
                 nome=row[1],
                 descricao=row[2],
                 criterios=row[3],

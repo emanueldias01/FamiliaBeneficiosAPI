@@ -1,6 +1,5 @@
 from db.connection import get_cursor_and_connection
 from models.visita.visita import Visita
-from datetime import datetime
 
 def listar_historico_visitas_agente(id_agente: int) -> list[Visita]:
     cursor, conn = get_cursor_and_connection()
@@ -8,9 +7,9 @@ def listar_historico_visitas_agente(id_agente: int) -> list[Visita]:
 
     try:
         cursor.execute('''
-            SELECT idAgente, idfamilia, data, hora, status
+            SELECT idagente, idfamilia, idrelatorio, data, hora, status
             FROM visita
-            WHERE idAgente = %s
+            WHERE idagente = %s
             ORDER BY data DESC, hora DESC
         ''', (id_agente,))
 
@@ -20,9 +19,10 @@ def listar_historico_visitas_agente(id_agente: int) -> list[Visita]:
             visita = Visita(
                 id_agente=row[0],
                 id_familia=row[1],
-                data=row[2],
-                hora=row[3].strftime('%H:%M:%S') if isinstance(row[3], datetime.time) else row[3],
-                status=row[4]
+                id_relatorio=row[2],
+                data=row[3],
+                hora=row[4].strftime('%H:%M:%S'),
+                status=row[5]
             )
             visitas.append(visita)
 

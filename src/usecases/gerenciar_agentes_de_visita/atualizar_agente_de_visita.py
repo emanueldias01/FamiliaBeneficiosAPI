@@ -11,7 +11,7 @@ def editar_agente(a : AgenteVisita, id : int):
                 contato = %s,
                 login = %s,
                 senha = %s
-            WHERE idAgente = %s
+            WHERE idagente = %s
         ''', (
             a.nome,
             a.contato,

@@ -19,11 +19,6 @@ def familia():
     familias = lista_familias_cadastradas()
     return {"familias": familias}  
 
-@router.get("/{id}")
-def familia(id : int):
-    familia = busca_familia_por_id(id)
-    return familia  
-
 @router.post("/")
 def familia(f : Familia):
     familia = criar_familia(f)
@@ -40,21 +35,22 @@ def familia(id : int):
     return {"message": "Família deletada com sucesso"} 
 
 @router.get("/filtrar")
-def filtrar_familias(filtro : FiltroFamilia):
+def filtrar_familias(bairro: str, renda: float, beneficioId: int):
+    filtro = FiltroFamilia(bairro=bairro, renda=renda, beneficioId=beneficioId)
     familias = filtar_familias_beneficios(filtro)
     return {"familias": familias}
     
-@router.get("/beneficios/{id}")
+@router.get("/{id}/beneficios/")
 def beneficios_recebidos(id: int):
     beneficios = vizualizar_beneficios_recebidos_por_familia_id(id)
     return {"beneficios": beneficios}
 
-@router.get("/membros/{id}")
+@router.get("/{id}/membros/")
 def membros_familia(id: int):
     membros = listar_membros_familia(id)
     return {"membros": membros}
 
-@router.post("/cadastrarMembro/{idFamilia}")
-def cadastrar_membro_familia(idFamilia : int, p : Pessoa):
-    cria_pessoa_membro_familia(p, idFamilia)
+@router.post("/{id}/cadastrarMembro/")
+def cadastrar_membro_familia(id : int, p : Pessoa):
+    cria_pessoa_membro_familia(p, id)
     return {"message" : "pessoa cadastrada com sucesso!"}
