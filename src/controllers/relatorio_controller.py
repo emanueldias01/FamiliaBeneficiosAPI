@@ -25,5 +25,6 @@ def historico_visitas_agente(idagente: int):
 
 @router.post("/")
 def cadastrar_relatorio_route(relatorio: TipoRelatorio):
-    cadastrar_relatorio(relatorio)
-    return {"message": "Relatório de visita cadastrado com sucesso", "relatorio": relatorio}
+    id_relatorio = cadastrar_relatorio(relatorio)
+    
+    return {"message": "Relatório de visita cadastrado com sucesso", "id_relatorio": id_relatorio, "relatorio": relatorio}
