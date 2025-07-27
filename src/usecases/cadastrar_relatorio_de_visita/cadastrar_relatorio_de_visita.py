@@ -6,38 +6,31 @@ from models.relatorio.relatorio_peso_familia import relatorio_peso_familia
 from models.relatorio.relatorio_vacinacao_familia import relatorio_vacinacao_familia
 
 class TipoRelatorio(BaseModel):
-    tipo_relatorio : str
-    dados : str
+    dados_vacinacao : str
+    dados_peso : str
+    dados_observacao : str
 
 def cadastrar_relatorio(tipo : TipoRelatorio):
     cursor, conn = get_cursor_and_connection()
 
     try:
-        # 1. Cria registro em relatorio e pega o id
         cursor.execute('INSERT INTO relatorio DEFAULT VALUES RETURNING idrelatorio')
         id_relatorio = cursor.fetchone()[0]
+        
+        cursor.execute(
+            'INSERT INTO relatorio_observacoes (observacoes, idrelatorio) VALUES (%s, %s)',
+            (tipo.dados_observacao, id_relatorio)
+        )
 
-        # 2. Insere na tabela correspondente
-        if tipo.tipo_relatorio == 'relatorio_observacoes':
-            cursor.execute(
-                'INSERT INTO relatorio_observacoes (observacoes, idrelatorio) VALUES (%s, %s)',
-                (tipo.dados, id_relatorio)
-            )
+        cursor.execute(
+            'INSERT INTO relatorio_vacinacaoFamilia (vacinacaoFamilia, idrelatorio) VALUES (%s, %s)',
+            (tipo.dados_vacinacao, id_relatorio)
+        )
 
-        elif tipo.tipo_relatorio == 'relatorio_vacinacaoFamilia':
-            cursor.execute(
-                'INSERT INTO relatorio_vacinacaoFamilia (vacinacaoFamilia, idrelatorio) VALUES (%s, %s)',
-                (tipo.dados, id_relatorio)
-            )
-
-        elif tipo.tipo_relatorio == 'relatorio_pesoFamilia':
-            cursor.execute(
-                'INSERT INTO relatorio_pesoFamilia (pesoFamilia, idrelatorio) VALUES (%s, %s)',
-                (tipo.dados, id_relatorio)
-            )
-
-        else:
-            raise ValueError("Tipo de relatório inválido.")
+        cursor.execute(
+            'INSERT INTO relatorio_pesoFamilia (pesoFamilia, idrelatorio) VALUES (%s, %s)',
+            (tipo.dados_peso, id_relatorio)
+        )
 
         conn.commit()
         return id_relatorio

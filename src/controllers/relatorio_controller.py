@@ -5,23 +5,29 @@ from usecases.visualizar_historico_de_relatorio_familiar.listar_historico_relato
 from usecases.visualizar_historico_de_relatorios_do_agente.listar_historico_de_relatorios_do_agente import listar_historico_relatorios_por_agente
 from usecases.visualizar_historico_de_visita_do_agente.listar_historico_de_visita_do_agente import listar_historico_visitas_agente
 from usecases.cadastrar_relatorio_de_visita.cadastrar_relatorio_de_visita import TipoRelatorio;
+from usecases.acessar_dados_relatorio_especifico.acessar_dados_relatorio import buscar_relatorio 
 
 router = APIRouter()
 
 @router.get("/historico-familia/{idFamilia}")
 def historico_relatorio_familia(idFamilia: int):
-    relatorios = buscar_historico_relatorios_familiar(idFamilia)
-    return {"relatorios": relatorios}
+    relatorio = buscar_historico_relatorios_familiar(idFamilia)
+    return relatorio
 
 @router.get("/historico-agente/{idagente}")
 def historico_relatorio_agente(idagente: int):
-    relatorios = listar_historico_relatorios_por_agente(idagente)
-    return {"relatorios": relatorios}
+    relatorio = listar_historico_relatorios_por_agente(idagente)
+    return relatorio
 
 @router.get("/historico-visitas-agente/{idagente}")
 def historico_visitas_agente(idagente: int):
     visitas = listar_historico_visitas_agente(idagente)
     return {"visitas": visitas}
+
+@router.get("/{idrelatorio}")
+def acessar_relatorio(idrelatorio: int):
+    relatorio = buscar_relatorio(idrelatorio)
+    return {"relatorio": relatorio}
 
 @router.post("/")
 def cadastrar_relatorio_route(relatorio: TipoRelatorio):

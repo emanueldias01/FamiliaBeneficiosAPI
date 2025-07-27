@@ -17,45 +17,36 @@ def buscar_historico_relatorios_familiar(id: int):
         ''', (id,))
 
         visitas = cursor.fetchall()
-        historico = []
 
         for visita in visitas:
             id_relatorio, data, hora, status, nome_agente = visita
+            
             relatorio_info = {
                 "id_relatorio": id_relatorio,
                 "data": data,
                 "hora": hora,
                 "status": status,
                 "agente": nome_agente,
-                "tipo": None,
-                "conteudo": None
+                "dados": {
+                    "observacoes": "",
+                    "peso_familia": "",
+                    "vacinacao_familia": ""
+                }    
             }
 
-            # Verifica em qual tabela especializada o relatório está
             cursor.execute('SELECT observacoes FROM relatorio_observacoes WHERE idrelatorio = %s', (id_relatorio,))
             row = cursor.fetchone()
-            if row:
-                relatorio_info["tipo"] = "observacoes"
-                relatorio_info["conteudo"] = RelatorioObservacoes(id_relatorio=id_relatorio, observacoes=row[0])
-                historico.append(relatorio_info)
-                continue
-
-            cursor.execute('SELECT vacinacaoFamilia FROM relatorio_vacinacaoFamilia WHERE idrelatorio = %s', (id_relatorio,))
+            relatorio_info["dados"]["observacoes"] = row[0]
+            
+            cursor.execute('SELECT vacinacaoFamilia FROM relatorio_vacinacaoFamilia WHERE idrelatorio = %s', (id_relatorio,))            
             row = cursor.fetchone()
-            if row:
-                relatorio_info["tipo"] = "vacinacao_familia"
-                relatorio_info["conteudo"] = RelatorioVacinacaoFamilia(id_relatorio=id_relatorio, vacinacao_familia=row[0])
-                historico.append(relatorio_info)
-                continue
+            relatorio_info["dados"]["vacinacao_familia"] = row[0]
 
             cursor.execute('SELECT pesoFamilia FROM relatorio_pesoFamilia WHERE idrelatorio = %s', (id_relatorio,))
             row = cursor.fetchone()
-            if row:
-                relatorio_info["tipo"] = "peso_familia"
-                relatorio_info["conteudo"] = RelatorioPesoFamilia(id_relatorio=id_relatorio, peso_familia=float(row[0]))
-                historico.append(relatorio_info)
+            relatorio_info["dados"]["peso_familia"] = row[0]
 
-        return historico
+        return relatorio_info
 
     except Exception as e:
         print(f"Erro ao buscar histórico de relatórios da família {id}: {e}")
