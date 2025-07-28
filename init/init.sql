@@ -113,16 +113,16 @@ INSERT INTO beneficio (nome, descricao, criterios, tipo, valor) VALUES
 
 
 INSERT INTO familia (nome, rua, numero, bairro, cidade, telefone, renda, numeroMembros) VALUES
-('Família Silva', 'Rua das Flores', '123', 'Centro', 'Cidade A', '1111-1111', 1200.00, 4),
-('Família Souza', 'Av. Brasil', '456', 'Jardim', 'Cidade B', '2222-2222', 800.00, 3),
-('Família Lima', 'Rua A', '789', 'Vila Nova', 'Cidade A', '3333-3333', 600.00, 5),
-('Família Costa', 'Rua B', '321', 'Centro', 'Cidade C', '4444-4444', 1000.00, 6),
-('Família Rocha', 'Rua C', '654', 'Bela Vista', 'Cidade D', '5555-5555', 950.00, 2),
-('Família Melo', 'Rua D', '987', 'Liberdade', 'Cidade A', '6666-6666', 1500.00, 4),
-('Família Dias', 'Rua E', '135', 'Industrial', 'Cidade E', '7777-7777', 700.00, 3),
-('Família Alves', 'Rua F', '246', 'Zona Norte', 'Cidade B', '8888-8888', 400.00, 5),
-('Família Martins', 'Rua G', '357', 'Zona Sul', 'Cidade C', '9999-9999', 1100.00, 6),
-('Família Oliveira', 'Rua H', '468', 'Centro', 'Cidade A', '1010-1010', 500.00, 2);
+('Silva', 'Rua das Flores', '123', 'Centro', 'Cidade A', '1111-1111', 1200.00, 2),
+('Souza', 'Av. Brasil', '456', 'Jardim', 'Cidade B', '2222-2222', 800.00, 2),
+('Lima', 'Rua A', '789', 'Vila Nova', 'Cidade A', '3333-3333', 600.00, 1),
+('Costa', 'Rua B', '321', 'Centro', 'Cidade C', '4444-4444', 1000.00, 1),
+('Rocha', 'Rua C', '654', 'Bela Vista', 'Cidade D', '5555-5555', 950.00, 1),
+('Melo', 'Rua D', '987', 'Liberdade', 'Cidade A', '6666-6666', 1500.00, 1),
+('Dias', 'Rua E', '135', 'Industrial', 'Cidade E', '7777-7777', 700.00, 1),
+('Alves', 'Rua F', '246', 'Zona Norte', 'Cidade B', '8888-8888', 400.00, 1),
+('Martins', 'Rua G', '357', 'Zona Sul', 'Cidade C', '9999-9999', 1100.00, 0),
+('Oliveira', 'Rua H', '468', 'Centro', 'Cidade A', '1010-1010', 500.00, 0);
 
 
 INSERT INTO tem (idfamilia, idbeneficio, dataInicio) VALUES
